@@ -29,5 +29,5 @@ Sample code to call this cfc componment
           <cfset emailResult = gcNotifyClient.SendEmail(templateID, recepientEmail, personlisation, attachmentStruct)>
           
 
-#TODO
+# TODO
 so far restrict to send one attachment per email. Will need to work on multiple attachments
