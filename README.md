@@ -33,4 +33,5 @@ Sample code to call this cfc componment
 Please check emailResult.StausCode for successful. emailResult.filecontent has more info returned from GC Notify.
           
 
-
+# Todo
+add more implementation, full support GC Notify API. for ex. SMS, Callback, Notification
