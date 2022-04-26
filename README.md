@@ -15,19 +15,22 @@ We use Coldfusion on some of our applications, and this is to provide a Coldfusi
 
 Sample code to call this cfc componment
 
-          <!---init gcNotifyClient object--->
-	        <cfset gcNotifyClient = createObject("component", "GCNotifyClient").init(yourAPIKey)>
+            <!---init gcNotifyClient object--->
+	    <cfset gcNotifyClient = createObject("component", "GCNotifyClient").init(aipKey)>
 
-          <!--- Prepare for Personisation data, value for placeholder ((variable_name)) --->
-          <cfset personlisation = structNew()>
-          <cfset personlisation["first_name"] = "sampleName">
-          <cfset personlisation["poc_result"] = "sampleResult">
+            <cfset emailStruct = gcNotifyClient.NewGCNotifyEmailStruct()>
 
-          <!--- Prepare for Attachment--->
-          <cfset attachmentStruct = gcNotifyClient.PrepareAttachment("absolute_file_path")>
+            <cfset emailStruct["template_id"] = TemplateID>
+            <cfset emailStruct["email_address"] = ToEmail>
+                       
+            <cfset emailStruct["personalisation"]["first_name"] = "samplevalue">
+            <cfset emailStruct["personalisation"]["poc_result"] = "sample_result">
 
-          <cfset emailResult = gcNotifyClient.SendEmail(templateID, recepientEmail, personlisation, attachmentStruct)>
+            <cfset gcNotifyClient.AddAttachment(emailStruct,absolut_file_path)>
+
+            <cfset emailResult = gcNotifyClient.SendEmail(emailStruct)>
+	    
+Please check emailResult.StausCode for successful. emailResult.filecontent has more info returned from GC Notify.
           
 
-# TODO
-so far restrict to send one attachment per email. Will need to work on multiple attachments
+
